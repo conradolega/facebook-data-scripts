@@ -1,8 +1,14 @@
 import os
+import pandas
 from bs4 import BeautifulSoup
 
 filename = ''
 
 with open(filename) as f:
     soup = BeautifulSoup(f.read(), 'html.parser')
-    messages = [message.text for message in soup.find_all('p').reverse()]
+    # Messages are archived in descending chronological order
+    message_headers = soup.find_all('div', class_='message')
+    message_headers.reverse()
+    messages = [{'user': message_header.find('span').text, 'message': message_header.next_sibling.text} for message_header in message_headers]
+    df = pandas.DataFrame.from_dict(messages)
+    df.to_csv('out.csv', encoding='utf-8')
