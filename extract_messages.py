@@ -17,4 +17,4 @@ with open(filename) as f:
         }
         for message_header in message_headers]
     df = pandas.DataFrame.from_dict(messages)
-    df.to_csv('messages.csv', encoding='utf-8')
+    df.to_csv('messages.csv', encoding='utf-8', index=False)
