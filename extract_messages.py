@@ -2,7 +2,7 @@ import os
 import pandas
 from bs4 import BeautifulSoup
 
-filename = '/home/conradolega/Downloads/facebook-data/messages/296.html'
+filename = ''
 
 with open(filename) as f:
     soup = BeautifulSoup(f.read(), 'html.parser')
